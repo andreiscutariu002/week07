@@ -14,6 +14,12 @@ namespace Exceptions.Part1
             {
                 RunProgram();
             }
+            catch (OverflowException e)
+            {
+                Console.WriteLine("OverflowException");
+
+                throw new Exception("OverflowException");
+            }
             catch (Exception e)
             {
                 var message = e.Message; // message
@@ -21,6 +27,14 @@ namespace Exceptions.Part1
                 var innerExc = e.InnerException;
 
                 Console.WriteLine(e);
+
+                throw new OverflowException("Some message");
+            }
+            finally
+            {
+                Console.WriteLine("Some code");
+
+                //throw new OverflowException("Some message");
             }
         }
 
@@ -47,6 +61,8 @@ namespace Exceptions.Part1
             catch (OverflowException e)
             {
                 Console.WriteLine($"Here 2 - OverflowException: {e.Message}");
+
+                throw;
             }
             catch (ArithmeticException e)
             {
